@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const PromoBannerSection = () => {
   return (
     <section className="bg-slate-950 py-16 text-white">
-      <div className="mx-auto grid max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+      <div className="mx-auto grid max-w-8xl gap-6 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
         <div className="overflow-hidden rounded-[2rem] bg-gradient-to-br from-orange-500 to-orange-600 p-8 md:p-10">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-white/80">
             Limited Offer
@@ -20,7 +20,7 @@ const PromoBannerSection = () => {
 
           <Link
             to="/shop"
-            className="mt-8 inline-flex rounded-full bg-white px-7 py-3 text-sm font-bold uppercase tracking-wide text-slate-900 transition hover:bg-slate-100"
+            className="mt-8 inline-flex rounded-full bg-slate-900 px-7 py-3 text-sm font-bold uppercase tracking-wide text-slate-900 transition border-slate-900 hover:bg-transparent border-2 hover:border-slate-900"
           >
             Shop Now
           </Link>

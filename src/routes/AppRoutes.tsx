@@ -12,6 +12,7 @@ import ProductDetailsPage from "../pages/ProductDetailsPage";
 import RegisterPage from "../pages/RegisterPage";
 import ShopPage from "../pages/ShopPage";
 import WomenPage from "../pages/WomenPage";
+import KidsPage from "../pages/KidsPage";
 
 import AdminRoute from "./AdminRoute";
 import ProtectedRoute from "./ProtectedRoute";
@@ -20,6 +21,10 @@ import AdminProductsPage from "../components/admin/AdminProductsPage";
 import AdminOrdersPage from "../components/admin/AdminOrdersPage";
 import AdminUsersPage from "../components/admin/AdminUsersPage";
 import AdminSettingsPage from "../components/admin/AdminSettingsPage";
+import AdminHeroPage from "../components/admin/AdminHeroPage";
+import AdminCategoriesPage from "../components/admin/AdminCategoriesPage";
+
+
 
 const AppRoutes = () => {
   return (
@@ -28,10 +33,13 @@ const AppRoutes = () => {
       <Route path="/shop" element={<ShopPage />} />
       <Route path="/men" element={<MenPage />} />
       <Route path="/women" element={<WomenPage />} />
+      <Route path="/kids" element={<KidsPage />} />
       <Route path="/accessories" element={<AccessoriesPage />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/product/:id" element={<ProductDetailsPage />} />
       <Route path="/cart" element={<CartPage />} />
+
+      
       <Route
         path="/checkout"
         element={
@@ -96,6 +104,22 @@ const AppRoutes = () => {
         element={
           <AdminRoute>
             <AdminSettingsPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/hero"
+        element={
+          <AdminRoute>
+            <AdminHeroPage />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/admin/categories"
+        element={
+          <AdminRoute>
+            <AdminCategoriesPage />
           </AdminRoute>
         }
       />

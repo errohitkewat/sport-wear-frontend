@@ -35,6 +35,14 @@ const adminLinks = [
     icon: Users,
   },
   {
+    label: "Hero Section",
+    path: "/admin/hero",
+  },
+  {
+  label: "Categories",
+  path: "/admin/categories",
+},
+  {
     label: "Settings",
     path: "/admin/settings",
     icon: Settings,
@@ -64,11 +72,11 @@ const AdminSidebar = ({ isOpen, setIsOpen }: AdminSidebarProps) => {
                   to={link.path}
                   className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-semibold transition ${
                     isActive
-                      ? "bg-slate-900 text-white"
+                      ? "border-2  text-white"
                       : "text-slate-700 hover:bg-slate-100"
                   }`}
                 >
-                  <Icon size={18} />
+                  {Icon && <Icon size={18} />}
                   {link.label}
                 </Link>
               );
@@ -113,7 +121,7 @@ const AdminSidebar = ({ isOpen, setIsOpen }: AdminSidebarProps) => {
                           : "text-slate-700 hover:bg-slate-100"
                       }`}
                     >
-                      <Icon size={18} />
+                      {Icon && <Icon size={18} />}
                       {link.label}
                     </Link>
                   );

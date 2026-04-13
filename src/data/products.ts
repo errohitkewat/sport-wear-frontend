@@ -2,7 +2,7 @@ export type ProductType = {
   _id: string;
   name: string;
   category: string;
-  gender: "Men" | "Women" | "Unisex";
+  gender: "Men" | "Women" | "Unisex" | "Kids";
   price: number;
   oldPrice?: number | null;
   image: string;

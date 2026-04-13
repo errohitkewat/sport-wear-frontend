@@ -19,7 +19,7 @@ export const categories = [
   "Jackets",
 ];
 
-export const genders = ["All", "Men", "Women", "Unisex"];
+export const genders = ["All", "Men", "Women", "Unisex", "Kids"];
 
 export const priceRanges = [
   "All",

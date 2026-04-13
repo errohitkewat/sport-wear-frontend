@@ -50,7 +50,12 @@ const LoginPage = () => {
       }
 
       login(data.token, data.user);
-      navigate("/");
+
+      if (data.user.role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       if (error instanceof Error) {
         setErrorMessage(error.message);

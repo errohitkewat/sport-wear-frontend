@@ -30,7 +30,7 @@ const features = [
 const WhyChooseUsSection = () => {
   return (
     <section className="bg-white py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-orange-500">
             Why Choose Us
