@@ -91,7 +91,7 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-[70] border-b border-white/10 bg-black/70 backdrop-blur-xl transition-all duration-300">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-8xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-500 text-sm font-black shadow-[0_0_30px_rgba(249,115,22,0.35)]">
             SW
