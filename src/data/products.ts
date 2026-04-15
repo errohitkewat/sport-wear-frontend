@@ -7,7 +7,7 @@ export type ProductType = {
   oldPrice?: number | null;
   image: string;
   description?: string;
-  isNew?: boolean;
+  isLatest?: boolean;
   isTrending?: boolean;
   sizes: string[];
   stock: number;

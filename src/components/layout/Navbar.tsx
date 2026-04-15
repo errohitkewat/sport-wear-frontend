@@ -3,12 +3,12 @@ import {
   LayoutDashboard,
   LogOut,
   Menu,
-  // Search,
   ShoppingBag,
   User,
   X,
+  ChevronRight,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
@@ -19,7 +19,6 @@ const navLinks = [
   { label: "Men", path: "/men" },
   { label: "Women", path: "/women" },
   { label: "Kids", path: "/kids" },
-  // { label: "Accessories", path: "/accessories" },
   { label: "Contact", path: "/contact" },
 ];
 
@@ -65,6 +64,18 @@ const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
   const location = useLocation();
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   const isActivePath = (path: string) => {
     if (path === "/") {
       return location.pathname === "/";
@@ -79,18 +90,18 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-8xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-[70] border-b border-white/10 bg-black/70 backdrop-blur-xl transition-all duration-300">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-950 text-sm font-extrabold text-white shadow-sm">
+          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-500 text-sm font-black shadow-[0_0_30px_rgba(249,115,22,0.35)]">
             SW
           </div>
 
           <div className="leading-none">
-            <h1 className="text-xl font-extrabold uppercase tracking-wide text-slate-950">
+            <h1 className="text-xl font-black uppercase tracking-[0.14em] text-white">
               SportWear
             </h1>
-            <p className="mt-1 text-[11px] uppercase tracking-[0.3em] text-slate-500">
+            <p className="mt-1 text-[11px] uppercase tracking-[0.35em] text-slate-400">
               Move Better
             </p>
           </div>
@@ -104,10 +115,10 @@ const Navbar = () => {
               <Link
                 key={link.label}
                 to={link.path}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                className={`rounded-full px-4 py-2 text-sm font-medium uppercase tracking-[0.12em] transition ${
                   active
-                    ? "bg-orange-500 text-white"
-                    : "text-black hover:bg-slate-100 hover:text-orange-500"
+                    ? "bg-orange-500 !text-black"
+                    : "!text-white hover:bg-white/10 hover:!text-orange-400"
                 }`}
               >
                 {link.label}
@@ -117,29 +128,25 @@ const Navbar = () => {
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
-          {/* <button className="rounded-full p-2.5 text-slate-700 transition hover:bg-slate-100 hover:text-slate-950">
-            <Search size={20} />
-          </button> */}
-
           {isAuthenticated && user ? (
             <>
               {user.role === "admin" && (
                 <Link
                   to="/admin"
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-800 transition hover:bg-slate-100"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-orange-500 hover:text-black"
                 >
                   <LayoutDashboard size={16} />
                   Admin
                 </Link>
               )}
 
-              <div className="rounded-full border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm font-medium text-slate-800">
+              <div className="rounded-full border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-200">
                 {user.name}
               </div>
 
               <button
                 onClick={logout}
-                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-white hover:text-black"
               >
                 <LogOut size={16} />
                 Logout
@@ -148,18 +155,18 @@ const Navbar = () => {
           ) : (
             <Link
               to="/login"
-              className="rounded-full p-2.5 text-slate-700 transition hover:bg-slate-100 hover:text-slate-950"
+              className="rounded-full border border-white/20 bg-white/5 p-2.5 text-slate-200 transition hover:bg-orange-500 hover:text-black"
             >
-              <User size={25} />
+              <User size={22} />
             </Link>
           )}
 
           <Link
             to="/cart"
-            className="relative rounded-full p-2.5 text-slate-700 transition hover:bg-slate-100 hover:text-slate-950"
+            className="relative rounded-full border border-white/20 bg-white/5 p-2.5 text-slate-200 transition hover:bg-orange-500 hover:text-black"
           >
-            <ShoppingBag size={25} />
-            <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-orange-500 px-1 text-[10px] font-bold text-white shadow-sm">
+            <ShoppingBag size={22} />
+            <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-orange-500 px-1 text-[10px] font-bold text-black">
               {cartCount}
             </span>
           </Link>
@@ -167,7 +174,7 @@ const Navbar = () => {
 
         <button
           onClick={() => setIsOpen(true)}
-          className="rounded-full p-2.5 text-slate-700 transition hover:bg-slate-100 lg:hidden"
+          className="rounded-full border border-white/10 bg-white/5 p-2.5 text-white transition hover:bg-orange-500 hover:text-black lg:hidden"
         >
           <Menu size={24} />
         </button>
@@ -182,7 +189,7 @@ const Navbar = () => {
             exit="exit"
             transition={{ duration: 0.25 }}
             onClick={() => setIsOpen(false)}
-            className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm lg:hidden"
+            className="fixed inset-0 z-[80] bg-black/70 backdrop-blur-xl lg:hidden"
           >
             <motion.div
               variants={sidebarVariants}
@@ -190,17 +197,19 @@ const Navbar = () => {
               animate="visible"
               exit="exit"
               onClick={(e) => e.stopPropagation()}
-              className="ml-auto flex h-full w-[84%] max-w-sm flex-col bg-white shadow-2xl"
+              className="ml-auto flex h-full w-[86%] max-w-sm flex-col border-l border-white/10 bg-black/70 backdrop-blur-xl shadow-2xl"
             >
-              <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+              <div className="flex items-center justify-between border-b px-5 py-4">
                 <div>
-                  <h2 className="text-lg font-bold text-slate-950">Menu</h2>
-                  <p className="text-sm text-slate-500">Browse the store</p>
+                  <h2 className="text-lg font-black uppercase tracking-[0.14em] text-white">
+                    Menu
+                  </h2>
+                  <p className="text-sm text-slate-400">Browse the store</p>
                 </div>
 
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="rounded-full p-2 text-slate-700 transition hover:bg-slate-100"
+                  className="rounded-full border border-white/10 bg-white/5 p-2 text-white transition hover:bg-orange-500 hover:text-black"
                 >
                   <X size={22} />
                 </button>
@@ -215,13 +224,14 @@ const Navbar = () => {
                       <Link
                         to={link.path}
                         onClick={() => setIsOpen(false)}
-                        className={`block rounded-2xl px-4 py-4 text-sm font-semibold transition ${
+                        className={`mt-3 flex items-center justify-between rounded-full px-4 py-3 text-sm font-bold uppercase tracking-[0.12em] transition ${
                           active
-                            ? "bg-slate-950 text-white!"
-                            : "border-b border-slate-200 text-slate-700 hover:bg-slate-100 hover:text-orange-500"
+                            ? "bg-orange-500 !text-black"
+                            : "!text-white hover:bg-white/10 hover:!text-orange-400"
                         }`}
                       >
-                        {link.label}
+                        <span>{link.label}</span>
+                        <ChevronRight size={16} />
                       </Link>
                     </motion.div>
                   );
@@ -230,7 +240,7 @@ const Navbar = () => {
 
               <motion.div
                 variants={bottomSectionVariants}
-                className="mt-auto border-t border-slate-200 px-5 py-5"
+                className="mt-auto border-t border-white/10 px-5 py-5"
               >
                 <div className="flex flex-col gap-3">
                   {isAuthenticated && user ? (
@@ -239,20 +249,20 @@ const Navbar = () => {
                         <Link
                           to="/admin"
                           onClick={() => setIsOpen(false)}
-                          className="flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-100"
+                          className="flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-orange-500 hover:text-black"
                         >
                           <LayoutDashboard size={18} />
                           Admin Dashboard
                         </Link>
                       )}
 
-                      <div className="rounded-full border border-slate-300 bg-slate-50 px-4 py-3 text-center text-sm font-semibold text-slate-800">
+                      <div className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-center text-sm font-semibold text-slate-200">
                         {user.name}
                       </div>
 
                       <button
                         onClick={handleLogout}
-                        className="flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-100"
+                        className="flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-white hover:text-black"
                       >
                         <LogOut size={18} />
                         Logout
@@ -262,7 +272,7 @@ const Navbar = () => {
                     <Link
                       to="/login"
                       onClick={() => setIsOpen(false)}
-                      className="flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-100"
+                      className="flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white transition hover:bg-orange-500 hover:text-black"
                     >
                       <User size={18} />
                       Account
@@ -272,11 +282,11 @@ const Navbar = () => {
                   <Link
                     to="/cart"
                     onClick={() => setIsOpen(false)}
-                    className="relative flex items-center justify-center gap-2 rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+                    className="relative flex items-center justify-center gap-2 rounded-full bg-orange-500 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
                   >
                     <ShoppingBag size={18} />
                     Cart
-                    <span className="absolute right-3 top-2 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-orange-500 px-1 text-[10px] font-bold text-white">
+                    <span className="absolute right-3 top-2 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-black px-1 text-[10px] font-bold text-white">
                       {cartCount}
                     </span>
                   </Link>
@@ -291,5 +301,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-

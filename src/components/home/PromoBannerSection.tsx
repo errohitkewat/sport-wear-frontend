@@ -1,52 +1,88 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ChevronRight } from "lucide-react";
 
 const PromoBannerSection = () => {
   return (
-    <section className="bg-slate-950 py-16 text-white">
-      <div className="mx-auto grid max-w-8xl gap-6 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <div className="overflow-hidden rounded-[2rem] bg-gradient-to-br from-orange-500 to-orange-600 p-8 md:p-10">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-white/80">
+    <section className="relative overflow-hidden bg-black py-20 text-white">
+      {/* grid pattern */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="h-full w-full bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:80px_80px]" />
+      </div>
+
+      {/* gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0b0b0b] to-black" />
+
+      <div className="relative mx-auto grid max-w-8xl gap-6 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+        {/* LEFT - MAIN PROMO */}
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+          className="relative overflow-hidden rounded-[32px] border border-white/10 bg-gradient-to-br from-orange-500 to-orange-600 p-8 md:p-10"
+        >
+          {/* glow */}
+          <div className="absolute -top-20 -right-20 h-60 w-60 rounded-full bg-white/20 blur-3xl" />
+
+          <p className="text-sm font-bold uppercase tracking-[0.35em] text-white/80">
             Limited Offer
           </p>
 
-          <h2 className="mt-4 max-w-md text-3xl font-extrabold uppercase leading-tight md:text-4xl">
+          <h2 className="mt-5 max-w-md text-3xl font-black uppercase leading-tight md:text-4xl lg:text-5xl">
             Upgrade Your Sportswear Collection
           </h2>
 
-          <p className="mt-4 max-w-lg text-sm leading-7 text-white/85 md:text-base">
-            Discover modern activewear made for training, comfort, and style.
-            Perfect for gym, running, and everyday movement.
+          <p className="mt-5 max-w-lg text-sm leading-7 text-white/90 md:text-base">
+            Premium activewear designed for performance, movement, and everyday
+            confidence. Built for athletes and street-ready style.
           </p>
 
           <Link
             to="/shop"
-            className="mt-8 inline-flex rounded-full bg-slate-900 px-7 py-3 text-sm font-bold uppercase tracking-wide text-slate-900 transition border-slate-900 hover:bg-transparent border-2 hover:border-slate-900"
+            className="mt-8 inline-flex items-center gap-3 rounded-full bg-black px-6 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-white transition hover:bg-white hover:text-black"
           >
             Shop Now
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-orange-500 text-black">
+              <ChevronRight size={18} />
+            </span>
           </Link>
-        </div>
+        </motion.div>
 
-        <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm md:p-10">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-orange-400">
+        {/* RIGHT - SECOND PROMO */}
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 p-8 backdrop-blur-md md:p-10"
+        >
+          {/* hover glow */}
+          <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+            <div className="absolute -bottom-20 -left-20 h-60 w-60 rounded-full bg-orange-500/20 blur-3xl" />
+          </div>
+
+          <p className="text-sm font-bold uppercase tracking-[0.35em] text-orange-400">
             New Arrival
           </p>
 
-          <h2 className="mt-4 max-w-md text-3xl font-extrabold uppercase leading-tight md:text-4xl">
+          <h2 className="mt-5 max-w-md text-3xl font-black uppercase leading-tight md:text-4xl lg:text-5xl">
             Fresh Fits For Every Workout
           </h2>
 
-          <p className="mt-4 max-w-lg text-sm leading-7 text-slate-300 md:text-base">
-            From training tees to tracksuits and performance jerseys, explore
-            styles that look sporty and feel comfortable all day.
+          <p className="mt-5 max-w-lg text-sm leading-7 text-slate-300 md:text-base">
+            Discover training essentials, modern fits, and performance gear that
+            keeps you comfortable while looking sharp all day.
           </p>
 
           <Link
             to="/shop"
-            className="mt-8 inline-flex rounded-full border border-white/20 bg-white/5 px-7 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-white/10"
+            className="mt-8 inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-extrabold uppercase tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-orange-500 hover:text-black"
           >
-            Explore Collection
+            Explore
+            <ChevronRight size={18} />
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

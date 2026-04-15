@@ -1,4 +1,4 @@
-const BASE_URL = "http://127.0.0.1:8000";
+const BASE_URL = "http://localhost:8000";
 
 export const getAllProducts = async () => {
   const res = await fetch(`${BASE_URL}/api/products`);
@@ -21,3 +21,5 @@ export const getSingleProduct = async (id: string) => {
 
   return data.product;
 };
+
+
